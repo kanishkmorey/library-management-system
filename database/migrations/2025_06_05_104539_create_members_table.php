@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('members', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone');
+            $table->id(); // Primary key for members table
+            $table->string('name'); // Name of the student or member
+            $table->string('email')->unique(); // Email of the member, its also the unique key
+            $table->string('phone'); // Phone number of the member
             $table->timestamps();
         });
     }
