@@ -10,5 +10,5 @@ Route::resource('members', MemberController::class);
 Route::resource('issues', IssueController::class);
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });

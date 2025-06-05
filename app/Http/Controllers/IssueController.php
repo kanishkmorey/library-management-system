@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+// Including all the locations to be used
+use App\Models\Issue;
+use App\Models\Book;
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class IssueController extends Controller

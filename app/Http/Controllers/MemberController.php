@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+// Including all the locations to be used
+use App\Models\Member;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
