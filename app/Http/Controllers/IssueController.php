@@ -24,11 +24,11 @@ class IssueController extends Controller
      */
     public function create()
     {
-        $books = Book::all();
+        $books = Book::where('is_issued', false)->get();
         $members = Member::all();
         return view('issues.create', compact('books', 'members'));
     }
-
+    
     /**
      * Stores a new issue record.
      */
@@ -38,13 +38,17 @@ class IssueController extends Controller
             'book_id' => 'required|exists:books,id',
             'member_id' => 'required|exists:members,id',
         ]);
-
+        
         Issue::create([
+            'is_issued' => true,
             'book_id' => $request->book_id,
             'member_id' => $request->member_id,
             'issued_at' => now(),
         ]);
 
+        $book = Book::find($request->book_id);
+        $book->is_issued = true;
+        $book->save();
         return redirect()->route('issues.index')->with('success', 'Book issued successfully.');
     }
 
@@ -64,6 +68,10 @@ class IssueController extends Controller
         $issue->update([
             'returned_at' => now()
         ]);
+        // Update book status to available
+        $book = Book::find($issue->book_id);
+        $book->is_issued = false;
+        $book->save();
 
         return redirect()->route('issues.index')->with('success', 'Book marked as returned.');
     }

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('isbn')->unique(); // ISBN code of the book
             $table->string('category'); // Genre or the category of the book.
             $table->integer('copies')->default(1); // Number of copies of the book in the library.
+            $table->boolean('is_issued')->default(false); // Shows that the book is issued or available.
             $table->timestamps();
         });
     }

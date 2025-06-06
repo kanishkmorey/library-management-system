@@ -8,7 +8,9 @@
             <tr>
                 <th>Title</th>
                 <th>Author</th>
+                <th>Available</th>
                 <th>Actions</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -16,6 +18,7 @@
             <tr>
                 <td>{{ $book->title }}</td>
                 <td>{{ $book->author }}</td>
+                <td>{{ $book->is_issued ? 'Issued' : 'Available' }}
                 <td>
                     <a href="{{ route('books.edit', $book->id) }}"><button>Edit</button></a>
                     <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline">
